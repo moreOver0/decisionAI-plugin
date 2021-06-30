@@ -60,6 +60,7 @@ def upload_model(config, subscription, model_id, model_dir):
             azure_blob.upload_blob(container_name, subscription + '_' + model_id, data)
         return STATUS_SUCCESS, ''
     except Exception as e:
+        print('decisionai_plugin upload model ' + traceback.format_exc())
         return STATUS_FAIL, str(e)
     finally:
         shutil.rmtree(zip_dir, ignore_errors=True)
